@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Regiter = () => {
   return (
-    <div className="register">
+    <section className="register">
       <div className="card">
         <div className="left">
           <h1>Lama Social.</h1>
@@ -29,7 +29,7 @@ const Regiter = () => {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 export default Regiter

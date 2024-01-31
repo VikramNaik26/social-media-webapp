@@ -14,7 +14,7 @@ import LeftBar from './components/leftBar/LeftBar'
 import RightBar from './components/rightBar/RightBar'
 
 const App = () => {
-  const currentUser = false
+  const currentUser = true 
 
   const Layout = () => {
     return (
@@ -22,7 +22,9 @@ const App = () => {
         <NavBar />
         <div style={{ display: 'flex' }}>
           <LeftBar />
-          <Outlet />
+          <div style={{ flex: 6 }}>
+            <Outlet />
+          </div>
           <RightBar />
         </div>
       </div>

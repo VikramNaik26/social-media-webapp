@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <div className="login">
+    <section className="login">
       <div className="card">
         <div className="left">
           <h1>Hello World.</h1>
@@ -27,7 +27,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 export default Login
