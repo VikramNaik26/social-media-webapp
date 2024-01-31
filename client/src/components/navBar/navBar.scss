@@ -4,70 +4,77 @@
   box-sizing: border-box;
 }
 
+@import '../../style.scss';
+
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 2.2rem;
-  height: 4.2rem;
-  border-bottom: 1px solid lightgray;
-  position: sticky;
-  top: 0;
-  background-color: white;
-
-  .left {
+  @include themify($themes) {
     display: flex;
     align-items: center;
-    gap: 1.4rem;
+    justify-content: space-between;
+    padding: 1.4rem 2.2rem;
+    height: 4.2rem;
+    border-bottom: 1px solid themed('border');
+    position: sticky;
+    top: 0;
+    background-color: themed('bg');
+    color: themed('textColor');
 
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
-
-    span {
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: darkblue;
-    }
-  }
-
-  .search {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    border: 1px solid lightgray;
-    border-radius: 0.2rem;
-    padding: 0.6rem;
-
-    input {
-      border: none;
-      width: 26rem;
-      padding: 0.4rem;
-    }
-  }
-
-  .right {
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .user {
+    .left {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      font-weight: 500;
+      gap: 1.4rem;
 
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        object-fit: cover;
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
       }
+
       span {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: themed('logo');
+      }
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid themed('border');
+      border-radius: 0.2rem;
+      padding: 0.6rem;
+
+      input {
+        border: none;
+        width: 26rem;
+        padding: 0.4rem;
+        background-color: transparent;
+        color: themed('textColor')
+      }
+    }
+
+    .right {
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: 500;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        span {
+        }
       }
     }
   }

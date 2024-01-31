@@ -1,96 +1,101 @@
+@import '../../style.scss';
+
 .rightbar {
-  flex: 3;
-  position: sticky;
-  z-index: -1;
-  height: 100%;
-  top: 4.2rem;
-  overflow: scroll;
+  @include themify($themes) {
+    flex: 3;
+    position: sticky;
+    z-index: -1;
+    min-height: 100vh;
+    top: 4.2rem;
+    overflow: scroll;
+    background-color: themed('bgSoft');
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
-  .container {
-    padding: 1.2rem;
+    .container {
+      padding: 1.2rem;
 
-    .item {
-      -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-      padding: 20px;
-      margin-bottom: 20px;
-      background-color: themed('bg');
+      .item {
+        -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: themed('bg');
 
-      h4 {
-        color: gray;
-      }
-
-      span {
-        color: gray;
-        font-size: 0.8rem;
-      }
-
-      .user {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 1.2rem 0;
-
-        .userinfo {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          position: relative;
-
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-
-          .online {
-            width: 0.7rem;
-            height: 0.7rem;
-            border-radius: 50%;
-            background-color: limegreen;
-            position: absolute;
-            top: 0;
-            left: 30px;
-          }
-
-          p {
-            // color: themed('textColorSoft');
-            color: gray;
-            font-size: 0.8rem;
-          }
-
-          span {
-            font-weight: 500;
-            font-size: 1rem;
-            // color: themed('textColor');
-            color: black;
-          }
+        h4 {
+          color: gray;
         }
 
-        .buttons {
+        span {
+          color: gray;
+          font-size: 0.8rem;
+        }
+
+        .user {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
+          justify-content: space-between;
+          margin: 1.2rem 0;
 
-          button {
-            border: none;
-            padding: 0.3rem;
-            color: white;
-            width: 3.6rem;
-            cursor: pointer;
+          .userinfo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
 
-            &:first-child {
-              background-color: #5271ff;
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
             }
 
-            &:last-child {
-              background-color: #f0544f;
+            .online {
+              width: 0.7rem;
+              height: 0.7rem;
+              border-radius: 50%;
+              background-color: limegreen;
+              position: absolute;
+              top: 0;
+              left: 30px;
+            }
+
+            p {
+              color: themed('textColorSoft');
+              // color: gray;
+              font-size: 0.8rem;
+            }
+
+            span {
+              font-weight: 500;
+              font-size: 1rem;
+              color: themed('textColor');
+              // color: black;
+            }
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+
+            button {
+              border: none;
+              padding: 0.3rem;
+              color: white;
+              width: 3.6rem;
+              cursor: pointer;
+
+              &:first-child {
+                background-color: #5271ff;
+              }
+
+              &:last-child {
+                background-color: #f0544f;
+              }
             }
           }
         }
