@@ -10,9 +10,11 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { DarkModeContext } from '../../context/darkModeContext'
+import { AuthContext } from '../../context/authContext'
 
 const NavBar = () => {
   const { darkMode, toggle } = useContext(DarkModeContext)
+  const { currentUser } = useContext(AuthContext)
 
   return (
     <nav>
@@ -27,7 +29,7 @@ const NavBar = () => {
           <li>
             {darkMode ? (
               <WbSunnyOutlinedIcon onClick={toggle} />
-              ) : (
+            ) : (
               <DarkModeOutlinedIcon onClick={toggle} />
             )}
           </li>
@@ -53,7 +55,7 @@ const NavBar = () => {
           </li>
           <li className="user">
             <img src="" alt="user" />
-            <span>John Doe</span>
+            <span>{currentUser.name}</span>
           </li>
         </ul>
       </div>

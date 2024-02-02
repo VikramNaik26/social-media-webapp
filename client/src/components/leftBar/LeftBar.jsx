@@ -12,14 +12,18 @@ import Messages from '../../assets/icons/10.png'
 import Tutorials from '../../assets/icons/11.png'
 import Courses from '../../assets/icons/12.png'
 import Fund from '../../assets/icons/13.png'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/authContext'
 
 const LeftBar = () => {
+  const { currentUser } = useContext(AuthContext)
+
   return (
     <section className="leftbar">
       <div className="menu">
         <div className="user">
           <img src="" alt="user" />
-          <span>John Doe</span>
+          <span>{currentUser.name}</span>
         </div>
         <ul>
           <li>
@@ -34,7 +38,7 @@ const LeftBar = () => {
             <img src={Market} alt="marketplace" />
             <span>Marketplace</span>
           </li>
-         {/*  <li>
+          {/*  <li>
             <img src={Watch} alt="watch" />
             <span>Watch</span>
           </li> */}
