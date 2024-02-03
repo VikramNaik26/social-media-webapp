@@ -52,10 +52,22 @@ nav {
         padding: 0.4rem;
         background-color: transparent;
         color: themed('textColor');
+
+        @include mobile {
+          display: none;
+        }
+
+        @include tablet {
+          width: 200px;
+        }
       }
     }
 
     .right {
+      @include mobile {
+        display: none;
+      }
+
       ul {
         list-style: none;
         display: flex;
@@ -67,6 +79,10 @@ nav {
         align-items: center;
         gap: 1rem;
         font-weight: 500;
+
+        @include tablet {
+          display: none;
+        }
 
         img {
           width: 30px;

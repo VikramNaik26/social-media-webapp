@@ -16,6 +16,10 @@
       display: none;
     }
 
+    @include mobile {
+      display: none;
+    }
+
     hr {
       height: 1px;
       border: none;

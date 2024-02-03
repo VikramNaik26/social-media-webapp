@@ -13,6 +13,13 @@
       display: none;
     }
 
+    @include mobile {
+      display: none;
+    }
+    @include tablet {
+      display: none;
+    }
+
     .container {
       padding: 1.2rem;
 
