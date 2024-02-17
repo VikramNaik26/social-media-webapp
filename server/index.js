@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import multer from 'multer'
 
 const app = express()
 
@@ -23,6 +24,25 @@ app.use(
   })
 )
 app.use(cookieParser())
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/public/upload')
+  },
+  filename: function (req, file, cb) {
+    // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
+    // cb(null, file.fieldname + '-' + uniqueSuffix)
+
+    cb(null, Date.now() + file.originalname)
+  },
+})
+
+const upload = multer({ storage: storage })
+
+app.post('/api/v1/upload', upload.single('file'), (req, res) => {
+  const file = req.file
+  res.status(200).json(file.filename)
+})
 
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1/users', userRoutes)

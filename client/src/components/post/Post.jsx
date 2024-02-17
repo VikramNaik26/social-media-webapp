@@ -6,6 +6,7 @@ import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined'
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 
+import moment from 'moment/moment'
 import { Link } from 'react-router-dom'
 import Comments from '../comments/Comments'
 import { useState } from 'react'
@@ -28,15 +29,15 @@ const Post = ({ post }) => {
                 className="detail-link"
               >
                 <span className="name">{post.name}</span>
-                <span className="date">1 min ago</span>
+                <span className="date">{moment(post.createdAt).fromNow()}</span>
               </Link>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
-        <div className="content" a>
+        <div className="content">
           <p>{post.desc}</p>
-          <img src={post.img} alt="" />
+          <img src={`./upload/${post.img}`} alt="" />
         </div>
         <div className="info">
           <div className="item">
