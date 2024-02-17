@@ -46,7 +46,7 @@ const Share = () => {
     setFile(null)
   }
 
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <div className="share">

@@ -1,9 +1,14 @@
 import express from 'express'
-import { getPosts, addPost } from '../controllers/posts.controller.js'
+import {
+  getPosts,
+  addPost,
+  deletePost,
+} from '../controllers/posts.controller.js'
 
 const router = express.Router()
 
 router.get('/', getPosts)
 router.post('/', addPost)
+router.delete('/:id', deletePost)
 
 export default router
