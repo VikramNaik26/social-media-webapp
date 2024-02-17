@@ -6,7 +6,7 @@ import { makeRequest } from '../../axios.js'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
-const Posts = () => {
+const Posts = ({ userId }) => {
   ///////////////////////////////////
   /* const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -37,7 +37,7 @@ const Posts = () => {
   /////////////////////////////////////
   const queryKey = ['posts']
   const fetchPosts = async () => {
-    const response = await makeRequest.get('/posts')
+    const response = await makeRequest.get('/posts?userId=' + userId)
     return response.data
   }
 
