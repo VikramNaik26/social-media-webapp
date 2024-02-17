@@ -10,6 +10,7 @@ import postsRoute from './routes/posts.route.js'
 import likesRoute from './routes/likes.route.js'
 import commentsRoute from './routes/comments.route.js'
 import authRoute from './routes/auth.route.js'
+import relationshipsRoute from './routes/relationships.route.js'
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true')
@@ -49,5 +50,6 @@ app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/posts', postsRoute)
 app.use('/api/v1/likes', likesRoute)
 app.use('/api/v1/comments', commentsRoute)
+app.use('/api/v1/relationships', relationshipsRoute)
 
 app.listen(8800, () => console.log('server listening on port 8800'))
