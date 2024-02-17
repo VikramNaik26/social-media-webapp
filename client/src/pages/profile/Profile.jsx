@@ -15,7 +15,8 @@ import { makeRequest } from '../../axios.js'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { AuthContext } from '../../context/authContext.jsx'
 import { useLocation } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import Update from '../../components/update/Update.jsx'
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext)
@@ -70,14 +71,25 @@ const Profile = () => {
     mutation.mutate(relatinshipsData.includes(currentUser.id))
   }
 
+  // update model
+  const [openUpdate, setOpenUpdate] = useState(false)
+
   return (
     <section className="profile">
       <div className="images">
         {data ? (
-          <img src="coverpic" alt="cover image" className="cover" />
+          <img
+            src={`/upload/${data.coverPic}`}
+            alt="cover image"
+            className="cover"
+          />
         ) : null}
         {data ? (
-          <img src={data.profilePic} alt="" className="profilePic" />
+          <img
+            src={`/upload/${data.profilePic}`}
+            alt=""
+            className="profilePic"
+          />
         ) : null}
       </div>
       {isLoading ? (
@@ -118,7 +130,7 @@ const Profile = () => {
                 {rIsLoading ? (
                   'loading...'
                 ) : userId === currentUser.id ? (
-                  <button>Update</button>
+                  <button onClick={() => setOpenUpdate(true)}>Update</button>
                 ) : (
                   <button onClick={handleFollow}>
                     {relatinshipsData.includes(currentUser.id)
@@ -136,6 +148,7 @@ const Profile = () => {
           </div>
         </>
       )}
+      {openUpdate ? <Update setOpenUpdate={setOpenUpdate} user={data} /> : null}
     </section>
   )
 }

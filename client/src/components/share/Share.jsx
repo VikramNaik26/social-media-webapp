@@ -46,12 +46,14 @@ const Share = () => {
     setFile(null)
   }
 
+  console.log(currentUser)
+
   return (
     <div className="share">
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={'/upload/' + currentUser.profilePic} alt="" />
+            <img src={'/upload/' + currentUser.profilePic} alt="profile" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
