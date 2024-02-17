@@ -18,6 +18,9 @@ import { useContext } from 'react'
 import { DarkModeContext } from './context/darkModeContext'
 import { AuthContext } from './context/authContext'
 
+// react query
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 const App = () => {
   // const currentUser = true
   const { currentUser } = useContext(AuthContext)
@@ -25,19 +28,22 @@ const App = () => {
   const { darkMode } = useContext(DarkModeContext)
 
   // console.log(darkMode)
+  const queryClient = new QueryClient()
 
   const Layout = () => {
     return (
-      <main className={`theme-${darkMode ? 'dark' : 'light'}`}>
-        <NavBar />
-        <div style={{ display: 'flex' }}>
-          <LeftBar />
-          <div style={{ flex: 6 }}>
-            <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <main className={`theme-${darkMode ? 'dark' : 'light'}`}>
+          <NavBar />
+          <div style={{ display: 'flex' }}>
+            <LeftBar />
+            <div style={{ flex: 6 }}>
+              <Outlet />
+            </div>
+            <RightBar />
           </div>
-          <RightBar />
-        </div>
-      </main>
+        </main>
+      </QueryClientProvider>
     )
   }
 

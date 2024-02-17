@@ -21,7 +21,7 @@ export const login = (req, res) => {
     const token = jwt.sign({ id: data[0].id }, 'secretkey')
 
     const { password, ...rest } = data[0]
-
+;
     res
       .cookie('access_token', token, {
         httpOnly: true,
@@ -37,8 +37,7 @@ export const register = (req, res) => {
 
   db.query(q, [req.body.username], (err, data) => {
     if (err) return res.status(500).json({ msg: err })
-    if (ata.length)
-      return res.status(409).json({ msg: 'user already exists' })
+    if (data.length) return res.status(409).json({ msg: 'user already exists' })
     // create a new user
     // hash its password
     const salt = bcrypt.genSaltSync(10)

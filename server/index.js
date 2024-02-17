@@ -11,7 +11,7 @@ import commentsRoute from './routes/comments.route.js'
 import authRoute from './routes/auth.route.js'
 
 app.use((req, res, next) => {
-  res.header('access-control-allow-origin')
+  res.header('Access-Control-Allow-Credentials', 'true')
   next()
 })
 

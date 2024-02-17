@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './register.scss'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Regiter = () => {
@@ -11,6 +11,7 @@ const Regiter = () => {
     password: '',
     name: '',
   })
+  const navigate = useNavigate()
 
   // console.log(formData)
 
@@ -27,6 +28,7 @@ const Regiter = () => {
     try {
       await axios.post('http://localhost:8800/api/v1/auth/register', newUser)
       setError(null)
+      navigate('/login')
     } catch (error) {
       setError(error)
     }

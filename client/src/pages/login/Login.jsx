@@ -49,8 +49,18 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
-            <input type="text" placeholder="Username" name="username" />
-            <input type="password" placeholder="Password" name="password" />
+            <input
+              required
+              type="text"
+              placeholder="Username"
+              name="username"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
             <button type="submit">Login</button>
             {error && <p>{error}</p>}
           </form>
