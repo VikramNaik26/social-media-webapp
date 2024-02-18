@@ -31,7 +31,7 @@ const Stories = () => {
   return (
     <section className="stories">
       <div className="story">
-        <img src={currentUser.profilePic} alt={currentUser.name} />
+        <img src={`/upload/${currentUser.profilePic}`} alt={currentUser.name} />
         <span>vikram</span>
         <button>+</button>
       </div>

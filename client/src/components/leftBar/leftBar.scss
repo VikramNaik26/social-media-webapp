@@ -40,15 +40,23 @@
         align-items: center;
         margin-bottom: 1.2rem;
 
-        img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          color: white;
+          text-decoration: none;
 
-        span {
-          font-size: 0.9rem;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          span {
+            font-size: 0.9rem;
+          }
         }
       }
 

@@ -124,7 +124,14 @@ const Profile = () => {
                   </div>
                   <div className="item">
                     <LanguageIcon />
-                    <span>{data.website}</span>
+                    <span className="website">
+                      <a
+                        href="https://github.com/VikramNaik26/social-media-webapp"
+                        target="_blank"
+                      >
+                        {data.website}
+                      </a>
+                    </span>
                   </div>
                 </div>
                 {rIsLoading ? (

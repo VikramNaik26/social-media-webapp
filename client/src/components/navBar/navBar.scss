@@ -84,13 +84,21 @@ nav {
           display: none;
         }
 
-        img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-        span {
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          color: white;
+          text-decoration: none;
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          span {
+          }
         }
       }
     }

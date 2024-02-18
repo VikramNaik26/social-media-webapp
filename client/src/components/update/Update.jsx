@@ -1,5 +1,5 @@
 import './update.scss'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { makeRequest } from '../../axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
@@ -54,6 +54,9 @@ const Update = ({ setOpenUpdate, user }) => {
     setTexts((prev) => ({ ...prev, [e.target.name]: [e.target.value] }))
   }
 
+  const coverRef = useRef()
+  const profileRef = useRef()
+
   return (
     <div className="update">
       <div className="wrapper">
@@ -63,8 +66,12 @@ const Update = ({ setOpenUpdate, user }) => {
             <label htmlFor="cover">
               <span>Cover Picture</span>
               <div className="imgContainer">
-                <img src="" alt="" />
-                <CloudUploadIcon className="icon" />
+                <img src={`/upload/${user.coverPic}`} alt="" />
+                <CloudUploadIcon
+                  className="icon"
+                  type="button"
+                  onClick={() => coverRef.current.click()}
+                />
               </div>
             </label>
             <input
@@ -72,13 +79,18 @@ const Update = ({ setOpenUpdate, user }) => {
               id="cover"
               accept="image/*"
               style={{ display: 'none' }}
+              ref={coverRef}
               onChange={(e) => setCover(e.target.files[0])}
             />
             <label htmlFor="profile">
               <span>Profile Picture</span>
               <div className="imgContainer">
-                <img src="" alt="" />
-                <CloudUploadIcon className="icon" />
+                <img src={`/upload/${user.profilePic}`} alt="" />
+                <CloudUploadIcon
+                  className="icon"
+                  type="button"
+                  onClick={() => profileRef.current.click()}
+                />
               </div>
             </label>
             <input
@@ -86,6 +98,7 @@ const Update = ({ setOpenUpdate, user }) => {
               id="profile"
               accept="image/*"
               style={{ display: 'none' }}
+              ref={profileRef}
               onChange={(e) => setProfile(e.target.files[0])}
             />
           </div>

@@ -95,14 +95,15 @@
               width: 3.6rem;
               border-radius: 0.5rem;
               cursor: pointer;
+              background-color: #5271ff;
 
-              &:first-child {
-                background-color: #5271ff;
-              }
+              // &:first-child {
+              // background-color: #5271ff;
+              // }
 
-              &:last-child {
-                background-color: #f0544f;
-              }
+              // &:last-child {
+              //   background-color: #f0544f;
+              // }
             }
           }
         }

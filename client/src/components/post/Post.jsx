@@ -66,6 +66,8 @@ const Post = ({ post }) => {
     deleteMutation.mutate(post.id)
   }
 
+  // console.log(post)
+
   return (
     <div className="post">
       <div className="container">
@@ -90,7 +92,7 @@ const Post = ({ post }) => {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={`./upload/${post.img}`} alt="" />
+          <img src={`/upload/${post.img}`} alt="" />
         </div>
         <div className="info">
           <div className="item">
@@ -111,7 +113,7 @@ const Post = ({ post }) => {
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            Comments
           </div>
           <div className="item">
             <ShareOutlinedIcon />

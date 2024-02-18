@@ -64,12 +64,13 @@ const Comments = ({ postId }) => {
   return (
     <div className="comments">
       <div className="write">
-        <img src={currentUser.profilePic} alt="" />
+        <img src={`/upload/${currentUser.profilePic}`} alt="" />
         <input
           type="text"
           placeholder="write a comment"
           onChange={(e) => setDesc(e.target.value)}
           value={desc}
+          required
         />
         <button onClick={handleClick}>Send</button>
       </div>
@@ -77,7 +78,8 @@ const Comments = ({ postId }) => {
         ? 'loading...'
         : data.map((comment) => (
             <div className="comment" key={comment.id}>
-              <img src={comment.profilePic} alt="" />
+              <img src={`/upload/${comment.profilePic}`} alt="" />
+              {/* {console.log(comment)} */}
               <div className="info">
                 <span>{comment.name}</span>
                 <p>{comment.desc}</p>
