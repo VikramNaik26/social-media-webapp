@@ -4,7 +4,6 @@ import './posts.scss'
 import { makeRequest } from '../../axios.js'
 
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
 
 const Posts = ({ userId }) => {
   ///////////////////////////////////
@@ -77,6 +76,8 @@ const Posts = ({ userId }) => {
   //     desc: 'Tenetur iste voluptates dolorem rem commodi voluptate pariatur, voluptatum, laboriosam consequatur enim nostrum cumque! Maiores a nam non adipisci minima modi tempore.',
   //   },
   // ]
+
+  // console.log(data)
 
   return (
     <section className="posts">

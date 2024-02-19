@@ -13,6 +13,23 @@ export const getUser = (req, res) => {
   })
 }
 
+export const getAllUser = (req, res) => {
+  // TODO
+  const userId = req.params.userId
+  const q = 'SELECT * FROM users WHERE NOT id = ?'
+
+  db.query(q, [userId], (err, data) => {
+    if (err) return res.status(500).json(err)
+    // const { password, ...info } = data[0]
+    let allUsers = []
+    data.forEach((user) => {
+      const { password, ...info } = user
+      allUsers.push(info)
+    })
+    return res.status(200).json(allUsers)
+  })
+}
+
 export const updateUser = (req, res) => {
   const token = req.cookies.access_token
   if (!token) return res.status(401).json('Not Logged in')
