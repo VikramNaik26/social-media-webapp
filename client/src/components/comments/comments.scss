@@ -38,6 +38,7 @@
       margin: 30px 0px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
 
       .info {
@@ -61,6 +62,16 @@
         align-self: center;
         color: gray;
         font-size: 12px;
+      }
+
+      .deleteBtn {
+        top: 30px;
+        right: 0;
+        border: none;
+        background-color: #f0544f;
+        padding: 5px;
+        cursor: pointer;
+        color: white;
       }
     }
   }

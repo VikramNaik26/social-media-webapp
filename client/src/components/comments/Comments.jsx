@@ -41,6 +41,21 @@ const Comments = ({ postId }) => {
     setDesc('')
   }
 
+  // delete comments
+  const deleteMutation = useMutation({
+    mutationFn: (commentId) => {
+      return makeRequest.delete('/comments/' + commentId)
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['comments'] })
+    },
+  })
+
+  const handleDelete = (commentId) => {
+    deleteMutation.mutate(commentId)
+  }
+
   //Temporary
   // const comments = [
   //   {
@@ -87,6 +102,13 @@ const Comments = ({ postId }) => {
               <span className="date">
                 {moment(comment.createdAt).fromNow()}
               </span>
+
+              <button
+                className="deleteBtn"
+                onClick={() => handleDelete(comment.id)}
+              >
+                delete
+              </button>
             </div>
           ))}
     </div>
