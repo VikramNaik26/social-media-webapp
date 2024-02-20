@@ -9,6 +9,7 @@ import PlaceIcon from '@mui/icons-material/Place'
 import LanguageIcon from '@mui/icons-material/Language'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import CircularIndicator from '../../components/circularIndicator/CircularIndicator'
 import Posts from '../../components/posts/Posts'
 
 import { makeRequest } from '../../axios.js'
@@ -101,7 +102,7 @@ const Profile = () => {
         ) : null}
       </div>
       {isLoading ? (
-        'loading...'
+        <CircularIndicator />
       ) : (
         <>
           <div className="profileContainer">
@@ -143,7 +144,7 @@ const Profile = () => {
                   </div>
                 </div>
                 {rIsLoading ? (
-                  'loading...'
+                  <CircularIndicator />
                 ) : userId === currentUser.id ? (
                   <button onClick={() => setOpenUpdate(true)}>Update</button>
                 ) : (

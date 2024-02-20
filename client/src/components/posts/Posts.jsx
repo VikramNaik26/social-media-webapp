@@ -4,6 +4,7 @@ import './posts.scss'
 import { makeRequest } from '../../axios.js'
 
 import { useQuery } from '@tanstack/react-query'
+import CircularIndicator from '../circularIndicator/CircularIndicator.jsx'
 
 const Posts = ({ userId }) => {
   ///////////////////////////////////
@@ -81,15 +82,17 @@ const Posts = ({ userId }) => {
 
   return (
     <section className="posts">
-      {error
-        ? 'Something went wrong!'
-        : isLoading
-        ? 'loading...'
-        : data.map((post) => (
-            <div className="post" key={post.id}>
-              <Post post={post} />
-            </div>
-          ))}
+      {error ? (
+        'Something went wrong!'
+      ) : isLoading ? (
+        <CircularIndicator />
+      ) : (
+        data.map((post) => (
+          <div className="post" key={post.id}>
+            <Post post={post} />
+          </div>
+        ))
+      )}
     </section>
   )
 }

@@ -5,6 +5,8 @@ import { AuthContext } from '../../context/authContext.jsx'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import CircularIndicator from '../circularIndicator/CircularIndicator.jsx'
+
 const RightBar = () => {
   const { currentUser } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -28,7 +30,7 @@ const RightBar = () => {
     <section className="rightbar">
       <div className="container">
         {isLoading ? (
-          'loading'
+          <CircularIndicator />
         ) : (
           <div className="item">
             <h4>Suggestions for you</h4>
