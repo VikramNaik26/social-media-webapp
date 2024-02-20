@@ -79,14 +79,22 @@ const Profile = () => {
       <div className="images">
         {data ? (
           <img
-            src={`/upload/${data.coverPic}`}
+            src={
+              data.coverPic
+                ? `/upload/${data.coverPic}`
+                : 'https://imgs.search.brave.com/e4pr3irpxliE78o2jJll9c9wVmsM6UeBFJ4Q5dhzHJc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDM0NDgx/MjguanBn'
+            }
             alt="cover image"
             className="cover"
           />
         ) : null}
         {data ? (
           <img
-            src={`/upload/${data.profilePic}`}
+            src={
+              data.profilePic
+                ? `/upload/${data.profilePic}`
+                : 'https://imgs.search.brave.com/MWlI8P3aJROiUDO9A-LqFyca9kSRIxOtCg_Vf1xd9BA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzE1Lzg0LzQz/LzM2MF9GXzIxNTg0/NDMyNV90dFg5WWlJ/SXllYVI3TmU2RWFM/TGpNQW15NEd2UEM2/OS5qcGc'
+            }
             alt=""
             className="profilePic"
           />
