@@ -2,6 +2,7 @@
 
 .stories {
   display: flex;
+  justify-content: start;
   flex-wrap: nowrap;
   gap: 0.6rem;
   height: 16rem;
@@ -22,7 +23,7 @@
     width: 95vw;
     gap: 10px;
     margin-bottom: 1rem;
-    justify-content: space-between;
+    justify-content: start;
   }
 
   .story {

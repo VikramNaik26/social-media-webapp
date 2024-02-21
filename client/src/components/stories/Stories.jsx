@@ -83,11 +83,13 @@ const Stories = () => {
       {data &&
         data.map((story) => (
           <div key={story.id} className="story">
-            <img src={story.img} alt={story.name} />
+            <img src={`/upload/${story.img}`} alt={story.name} />
             <span>{story.name}</span>
           </div>
         ))}
-      {openUpdate ? <StoryUpload setOpenUpdate={setOpenUpdate} /> : null}
+      {openUpdate ? (
+        <StoryUpload setOpenUpdate={setOpenUpdate} story={data} />
+      ) : null}
     </section>
   )
 }

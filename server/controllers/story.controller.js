@@ -10,7 +10,7 @@ export const getStory = (req, res) => {
 
   jwt.verify(token, 'secretkey', (err, userInfo) => {
     if (err) return res.status(403).json('token is invalid')
-    const q = `SELECT DISTINCT s.id, s.*, u.id AS userId FROM stories AS s JOIN users AS u ON (u.id = s.userId)
+    const q = `SELECT DISTINCT s.id, s.*, u.id AS userId, u.name, u.profilePic FROM stories AS s JOIN users AS u ON (u.id = s.userId)
         LEFT JOIN relationships AS r ON (s.userId = r.followedUserId) WHERE r.followerUserId= ? OR s.userId =?`
 
     const values = [userInfo.id, userInfo.id]
@@ -36,7 +36,7 @@ export const addStory = (req, res) => {
       if (err) return res.status(500).json(err)
 
       // console.log(data)
-      return res.status(200).json('Post has been created')
+      return res.status(200).json('Story has been created')
     })
   })
 }
