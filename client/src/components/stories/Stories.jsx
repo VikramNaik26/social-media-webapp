@@ -1,12 +1,31 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import './stories.scss'
 
 import { AuthContext } from '../../context/authContext'
+import StoryUpload from '../storyUpload/StoryUpload.jsx'
+
+import { useQuery } from '@tanstack/react-query'
+import { makeRequest } from '../../axios.js'
 
 const Stories = () => {
   const { currentUser } = useContext(AuthContext)
+  // console.log(currentUser)
+
+  const queryKey = ['stories']
+  const fetchPosts = async () => {
+    const response = await makeRequest.get('/stories?userId=' + currentUser.id)
+    return response.data
+  }
+
+  // Use the useQuery hook
+  const { data, isLoading, error } = useQuery({
+    queryKey,
+    queryFn: () => fetchPosts(),
+  })
+
+  // console.log(data)
   //TEMPORARY
-  const stories = [
+  /*  const stories = [
     {
       id: 1,
       name: 'John Doe',
@@ -27,7 +46,25 @@ const Stories = () => {
       name: 'John Doe',
       img: 'https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load',
     },
-  ]
+    {
+      id: 5,
+      name: 'John Doe',
+      img: 'https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load',
+    },
+    {
+      id: 6,
+      name: 'John Doe',
+      img: 'https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load',
+    },
+    {
+      id: 7,
+      name: 'John Doe',
+      img: 'https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load',
+    },
+  ] */
+
+  const [openUpdate, setOpenUpdate] = useState(false)
+
   return (
     <section className="stories">
       <div className="story">
@@ -40,15 +77,17 @@ const Stories = () => {
           alt={currentUser.name}
         />
         <span>{currentUser.name}</span>
-        <button>+</button>
+        <button onClick={() => setOpenUpdate(true)}>+</button>
       </div>
 
-      {stories.map((story) => (
-        <div key={story.id} className="story">
-          <img src={story.img} alt={story.name} />
-          <span>{story.name}</span>
-        </div>
-      ))}
+      {data &&
+        data.map((story) => (
+          <div key={story.id} className="story">
+            <img src={story.img} alt={story.name} />
+            <span>{story.name}</span>
+          </div>
+        ))}
+      {openUpdate ? <StoryUpload setOpenUpdate={setOpenUpdate} /> : null}
     </section>
   )
 }

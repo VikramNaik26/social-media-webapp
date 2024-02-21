@@ -1,22 +1,14 @@
-import './update.scss'
+import './storyUpload.scss'
 import { useRef, useState } from 'react'
 import { makeRequest } from '../../axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
-const Update = ({ setOpenUpdate, user }) => {
-  const [cover, setCover] = useState(null)
-  const [profile, setProfile] = useState(null)
-  const [texts, setTexts] = useState({
-    email: user.email,
-    password: user.password,
-    name: user.name,
-    city: user.city,
-    website: user.website,
-  })
+const StoryUpload = ({ setOpenUpdate, user }) => {
+  const [storyImage, setStoryImage] = useState(null)
+  const [userId, setUserId] = useState(null)
 
   const upload = async (file) => {
-    // console.log(file)
+    console.log(file)
     try {
       const formData = new FormData()
       formData.append('file', file)
@@ -27,41 +19,11 @@ const Update = ({ setOpenUpdate, user }) => {
     }
   }
 
-  const queryClient = useQueryClient()
-
-  const mutation = useMutation({
-    mutationFn: (user) => {
-      return makeRequest.put('/users', user)
-    },
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['user'] })
-    },
-  })
-
-  const handleClick = async (e) => {
-    e.preventDefault()
-    let coverUrl
-    let profileUrl
-    coverUrl = cover ? await upload(cover) : user.coverPic
-    profileUrl = profile ? await upload(profile) : user.profilePic
-
-    mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl })
-    setOpenUpdate(false)
-  }
-
-  const handleChange = (e) => {
-    setTexts((prev) => ({ ...prev, [e.target.name]: [e.target.value] }))
-  }
-
-  const coverRef = useRef()
-  const profileRef = useRef()
-
   return (
-    <div className="update">
+    <div className="upload">
       <div className="wrapper">
-        <h1>Update Your Profile</h1>
-        <form>
+        <h1>Upload your story</h1>
+        {/* <form>
           <div className="files">
             <label htmlFor="cover">
               <span>Cover Picture</span>
@@ -138,7 +100,7 @@ const Update = ({ setOpenUpdate, user }) => {
             onChange={handleChange}
           />
           <button onClick={handleClick}>Update</button>
-        </form>
+        </form> */}
         <button className="close" onClick={() => setOpenUpdate(false)}>
           close
         </button>
@@ -146,4 +108,4 @@ const Update = ({ setOpenUpdate, user }) => {
     </div>
   )
 }
-export default Update
+export default StoryUpload

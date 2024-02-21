@@ -2,9 +2,15 @@
 
 .stories {
   display: flex;
+  flex-wrap: nowrap;
   gap: 0.6rem;
   height: 16rem;
   margin-bottom: 1.8rem;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include tablet {
     height: 150px;
@@ -13,12 +19,15 @@
 
   @include mobile {
     height: 50px;
+    width: 95vw;
+    gap: 10px;
     margin-bottom: 1rem;
     justify-content: space-between;
   }
 
   .story {
-    flex: 1;
+    flex: 0 0 auto;
+    max-width: 8rem;
     border-radius: 0.4rem;
     overflow: hidden;
     position: relative;
