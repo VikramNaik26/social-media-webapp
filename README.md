@@ -43,8 +43,8 @@ To run the Social Media Web App locally, follow these steps:
 Feel free to explore the project folders to gain insights into the code structure and implementation details:
 
 - `database`: Contains SQL scripts for database creation and initialization.
-- `backend`: Implements the Node.js backend server using Express.js.
-- `frontend`: Houses the React-based user interface for the social media platform.
+- `server`: Implements the Node.js backend server using Express.js.
+- `client`: Houses the React-based user interface for the social media platform.
 
 
 
