@@ -6,6 +6,7 @@ import StoryUpload from '../storyUpload/StoryUpload.jsx'
 
 import { useQuery } from '@tanstack/react-query'
 import { makeRequest } from '../../axios.js'
+import StoryPreview from '../storyPreview/StoryPreview.jsx'
 
 const Stories = () => {
   const { currentUser } = useContext(AuthContext)
@@ -64,6 +65,7 @@ const Stories = () => {
   ] */
 
   const [openUpdate, setOpenUpdate] = useState(false)
+  const [openStory, setOpenStory] = useState({ id: null, open: false })
 
   return (
     <section className="stories">
@@ -77,18 +79,31 @@ const Stories = () => {
           alt={currentUser.name}
         />
         <span>{currentUser.name}</span>
-        <button onClick={() => setOpenUpdate(true)}>+</button>
+        <button type="button" onClick={() => setOpenUpdate(true)}>
+          +
+        </button>
       </div>
-
       {data &&
         data.map((story) => (
           <div key={story.id} className="story">
-            <img src={`/upload/${story.img}`} alt={story.name} />
+            <img
+              src={`/upload/${story.img}`}
+              alt={story.name}
+              onClick={() => setOpenStory({ id: story.id, open: true })}
+            />
             <span>{story.name}</span>
+            {openStory.open ? (
+              <StoryPreview openStory={openStory} setOpenStory={setOpenStory} data={data} />
+            ) : null}
           </div>
         ))}
-      {openUpdate ? (
-        <StoryUpload setOpenUpdate={setOpenUpdate} story={data} />
+
+      {openUpdate && !openStory.open ? (
+        <StoryUpload
+          openStory={openStory}
+          setOpenUpdate={setOpenUpdate}
+          story={data}
+        />
       ) : null}
     </section>
   )
