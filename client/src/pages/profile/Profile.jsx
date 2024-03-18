@@ -15,12 +15,13 @@ import Posts from '../../components/posts/Posts'
 import { makeRequest } from '../../axios.js'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { AuthContext } from '../../context/authContext.jsx'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import Update from '../../components/update/Update.jsx'
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const userId = parseInt(useLocation().pathname.split('/')[2])
   const queryKey = ['user']
@@ -70,6 +71,16 @@ const Profile = () => {
 
   const handleFollow = () => {
     mutation.mutate(relatinshipsData.includes(currentUser.id))
+  }
+
+  const handleLogout = async () => {
+    const response = await makeRequest.post(
+      'http://localhost:8800/api/v1/auth/logout'
+    )
+    if (response) {
+      localStorage.removeItem('user')
+      navigate('/login')
+    }
   }
 
   // update model
@@ -146,13 +157,18 @@ const Profile = () => {
                 {rIsLoading ? (
                   <CircularIndicator />
                 ) : userId === currentUser.id ? (
-                  <button onClick={() => setOpenUpdate(true)}>Update</button>
+                  <div className="btn-container">
+                    <button onClick={handleLogout}>Logout</button>
+                    <button onClick={() => setOpenUpdate(true)}>Update</button>
+                  </div>
                 ) : (
-                  <button onClick={handleFollow}>
-                    {relatinshipsData.includes(currentUser.id)
-                      ? 'Following'
-                      : 'Follow'}
-                  </button>
+                  <div className="btn-container">
+                    <button onClick={handleFollow}>
+                      {relatinshipsData.includes(currentUser.id)
+                        ? 'Following'
+                        : 'Follow'}
+                    </button>
+                  </div>
                 )}
               </div>
               <div className="right">

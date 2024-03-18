@@ -111,13 +111,25 @@
               }
             }
           }
-          button {
-            border: none;
-            background-color: #5271ff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+          .btn-container {
+            button {
+              border: none;
+              color: white;
+              padding: 10px 12px;
+              border-radius: 5px;
+              cursor: pointer;
+              width: fit-content;
+            }
+
+            & > :first-child {
+              background-color: rgb(201, 52, 52);
+              margin-right: 0.5rem;
+            }
+
+            & > :last-child {
+              background-color: #5271ff;
+              margin-left: 0.5rem;
+            }
           }
         }
 
