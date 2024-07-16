@@ -23,11 +23,15 @@ const Login = () => {
 
     // console.log(newUser)
 
-    try {
-      await login(newUser)
-      navigate('/')
-    } catch (error) {
-      setError(error.response.data)
+    if (newUser.username && newUser.password) {
+      try {
+        await login(newUser)
+        navigate('/')
+      } catch (error) {
+        setError(error.response.data.msg)
+      }
+    } else {
+      setError("Missing fields")
     }
   }
 
@@ -50,19 +54,17 @@ const Login = () => {
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
             <input
-              required
               type="text"
               placeholder="Username"
               name="username"
             />
             <input
-              required
               type="password"
               placeholder="Password"
               name="password"
             />
             <button type="submit">Login</button>
-            {error && <p>{error}</p>}
+            {error && <p className="error-msg">{error}</p>}
           </form>
         </div>
       </div>

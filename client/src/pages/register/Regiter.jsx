@@ -24,13 +24,16 @@ const Regiter = () => {
     // console.log(newUser)
     const newUser = Object.fromEntries(new FormData(e.currentTarget))
     setFormData(newUser)
-
-    try {
-      await axios.post('http://localhost:8800/api/v1/auth/register', newUser)
-      setError(null)
-      navigate('/login')
-    } catch (error) {
-      setError(error)
+    if (newUser.email && newUser.name && newUser.password && newUser.username) {
+      try {
+        await axios.post('http://localhost:8800/api/v1/auth/register', newUser)
+        setError(null)
+        navigate('/login')
+      } catch (error) {
+        setError(error.response.data.msg)
+      }
+    } else {
+      setError("Missing fields")
     }
   }
 
@@ -56,7 +59,7 @@ const Regiter = () => {
             <input type="email" placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="password" />
             <input type="text" placeholder="Name" name="name" />
-            {error && <p>{error.response.data.msg}</p>}
+            {error && <p className="error-msg">{error}</p>}
             <button type="submit">Register</button>
           </form>
         </div>
